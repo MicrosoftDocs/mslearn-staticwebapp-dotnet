@@ -1,5 +1,6 @@
 ﻿@page "/product/{productId:int}"
 @inject HttpClient http
+@inject NavigationManager navigation
 
 <div class="card edit-detail">
     <header class="card-header">
@@ -70,11 +71,12 @@
 
     private void CancelProduct()
     {
-        Console.WriteLine("Cancel Product");
+        navigation.NavigateTo("/");
     }
 
-    private void Save()
+    private async Task Save()
     {
-        Console.WriteLine("Save");
+        await http.PostAsJsonAsync("api/products", product);
+        navigation.NavigateTo("/");
     }
 }
