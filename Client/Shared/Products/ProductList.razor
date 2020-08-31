@@ -1,0 +1,44 @@
+﻿@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div>@ErrorMessage</div>
+}
+else if (Products != null && Products.Count() > 0)
+{
+    <ul class="list">
+        @foreach (var product in Products)
+        {
+            <li role="presentation">
+                <div class="card">
+                    <CardContent Name="@product.Name"
+                                 Description="@product.Description" />
+
+                    <footer class="card-footer">
+
+                        <ButtonFooter Class="delete-item"
+                                      IconClasses="fas fa-trash"
+                                      OnClick="@(async _ => await DeleteProduct.InvokeAsync(product))"
+                                      Label="Delete" />
+
+                        <ButtonFooter Class="edit-item"
+                                      IconClasses="fas fa-edit"
+                                      OnClick="@(async _ => await SelectProduct.InvokeAsync(product))"
+                                      Label="Edit" />
+
+                    </footer>
+
+                </div>
+
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div>Loading data...</div>
+}
+@code {
+    [Parameter] public IEnumerable<Product> Products { get; set; }
+    [Parameter] public EventCallback<Product> DeleteProduct { get; set; }
+    [Parameter] public EventCallback<Product> SelectProduct { get; set; }
+    [Parameter] public string ErrorMessage { get; set; }
+}

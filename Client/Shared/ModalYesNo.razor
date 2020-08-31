@@ -1,0 +1,30 @@
+﻿@if (Show)
+{
+    <div class="modal is-active">
+        <div class="modal-background" />
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Confirm</p>
+            </header>
+            <section class="modal-card-body">@Message</section>
+            <footer class="modal-card-foot card-footer">
+                <button class="button modal-no" @onclick="OnNo">
+                    No
+                </button>
+                <button class="button is-primary modal-yes" @onclick="OnYes">
+                    Yes
+                </button>
+            </footer>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string Message { get; set; }
+
+    [Parameter] public bool Show { get; set; }
+
+    [Parameter] public EventCallback OnNo { get; set; }
+
+    [Parameter] public EventCallback OnYes { get; set; }
+}

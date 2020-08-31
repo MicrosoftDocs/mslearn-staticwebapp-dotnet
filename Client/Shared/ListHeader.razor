@@ -1,0 +1,27 @@
+﻿<div class="content-title-group">
+    <NavLink href="@RoutePath">
+        <h2 class="title">@Title</h2>
+    </NavLink>
+    @if (!HideAdd)
+    {
+        <button class="button add-button"
+                @onclick="HandleAdd"
+                aria-label="add">
+            <i class="fas fa-plus" aria-hidden="true" />
+        </button>
+        <button class="button refresh-button"
+                @onclick="HandleRefresh"
+                aria-label="refresh">
+            <i class="fas fa-sync" aria-hidden="true" />
+        </button>
+    }
+
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string RoutePath { get; set; }
+    [Parameter] public EventCallback HandleAdd { get; set; }
+    [Parameter] public EventCallback HandleRefresh { get; set; }
+    [Parameter] public bool HideAdd { get; set; }
+}

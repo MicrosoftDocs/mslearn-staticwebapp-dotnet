@@ -1,0 +1,27 @@
+﻿<div class="field">
+    <label class="label" for="@Name">
+        @Name
+    </label>
+    <input name="@Name"
+           class="input"
+           type="text"
+           defaultValue="@Value"
+           placeholder="@Placeholder"
+           readOnly="@ReadOnly"
+           @onchange="OnInputChange" />
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; }
+    [Parameter] public string Value { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public string Placeholder { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    private Task OnInputChange(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+}

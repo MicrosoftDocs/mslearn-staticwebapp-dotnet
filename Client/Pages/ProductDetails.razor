@@ -1,0 +1,80 @@
+﻿@page "/product/{productId:int}"
+@inject HttpClient http
+
+<div class="card edit-detail">
+    <header class="card-header">
+        <p class="card-header-title">
+            @product.Name
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            @if (product.Id != 0)
+            {
+                <label class="label" for="id">id</label>
+                <input name="id"
+                       class="input"
+                       value="@product.Id"
+                       readonly />
+            }
+            <InputDetail Name="name"
+                         Placeholder="Oranges"
+                         @bind-Value="product.Name" />
+            <InputDetail Name="description"
+                         Placeholder="box"
+                         @bind-Value="product.Description" />
+            <div class="field">
+                <label class="label" for="quantity">
+                    quantity
+                </label>
+                <input name="quantity"
+                       class="input"
+                       type="number"
+                       min="1"
+                       max="100"
+                       defaultValue="@product.Quantity"
+                       placeholder="1"
+                       @onchange="@(e => product.Quantity = int.Parse(e.Value.ToString()))" />
+            </div>
+        </div>
+    </div>
+    <footer class="card-footer ">
+        <ButtonFooter Class="cancel-button"
+                      IconClasses="fas fa-undo"
+                      OnClick="@CancelProduct"
+                      Label="Cancel" />
+        <ButtonFooter Class="save-button"
+                      IconClasses="fas fa-save"
+                      OnClick="@Save"
+                      Label="Save" />
+    </footer>
+</div>
+
+@code {
+    private Product product;
+
+    [Parameter] public int ProductId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ProductId == 0)
+        {
+            product = new Product();
+        }
+        else
+        {
+            var products = await http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+            product = products.First(p => p.Id == ProductId);
+        }
+    }
+
+    private void CancelProduct()
+    {
+        Console.WriteLine("Cancel Product");
+    }
+
+    private void Save()
+    {
+        Console.WriteLine("Save");
+    }
+}

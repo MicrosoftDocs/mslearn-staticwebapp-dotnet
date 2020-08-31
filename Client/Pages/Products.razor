@@ -1,0 +1,72 @@
+﻿@page "/products"
+@inject HttpClient http
+@inject NavigationManager navigation
+
+<div class="content-container">
+    <ListHeader Title="My List"
+                HandleAdd="@AddNewProduct"
+                HandleRefresh="@HandleRefresh"
+                RoutePath="/products" />
+    <div class="columns is-multiline is-variable">
+        <div class="column is-8">
+            <ProductList ErrorMessage="@errorMessage"
+                         Products="@products"
+                         SelectProduct="@SelectProduct"
+                         DeleteProduct="@DeleteProduct" />
+        </div>
+    </div>
+
+    <ModalYesNo Message="@modalMessage"
+                OnNo="@CloseModal"
+                OnYes="@DeleteFromModal"
+                Show="@showModal"/>
+</div>
+
+@code {
+    private string errorMessage = "";
+    private IEnumerable<Product> products;
+    private Product productToDelete;
+    private bool showModal;
+    private string modalMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+    }
+
+    private void AddNewProduct()
+    {
+        Console.WriteLine("Add new product");
+    }
+
+    private async Task HandleRefresh()
+    {
+        products = await http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+    }
+
+    private void SelectProduct(Product product)
+    {
+        navigation.NavigateTo($"/product/{product.Id}");
+    }
+
+    private void DeleteProduct(Product product)
+    {
+        productToDelete = product;
+        showModal = true;
+        modalMessage = $"Would you like to delete {productToDelete.Name}";
+    }
+
+    private void CloseModal()
+    {
+        productToDelete = null;
+        showModal = false;
+    }
+
+    private async Task DeleteFromModal()
+    {
+        await http.DeleteAsync($"api/products/{productToDelete.Id}");
+        await HandleRefresh();
+        productToDelete = null;
+        showModal = false;
+    }
+}

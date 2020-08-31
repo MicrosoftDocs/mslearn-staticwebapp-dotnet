@@ -1,0 +1,14 @@
+﻿<button class="link card-footer-item @Class"
+        aria-label="@Label"
+        tabIndex=0
+        @onclick="OnClick">
+    <i class="@IconClasses" />
+    <span>@Label</span>
+</button>
+
+@code {
+    [Parameter] public string Class { get; set; }
+    [Parameter] public string IconClasses { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

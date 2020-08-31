@@ -1,0 +1,197 @@
+﻿.menu-list .active-link,
+.menu-list .router-link-active {
+    color: #fff;
+    background-color: #00b3e6;
+}
+
+.not-found i {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.not-found .title {
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 24px;
+    text-transform: none;
+}
+
+header {
+    font-weight: 700;
+    font-family: Arial;
+}
+
+    header span {
+        letter-spacing: 0;
+    }
+
+        header span.brand-first {
+            color: #fff;
+        }
+
+        header span.brand-second {
+            color: #ccc;
+        }
+
+        header span.brand-third {
+            color: #61dafb;
+        }
+
+    header .navbar-item.nav-home {
+        border: 3px solid transparent;
+        border-radius: 0;
+    }
+
+        header .navbar-item.nav-home:hover {
+            border-right: 3px solid #61dafb;
+            border-left: 3px solid #61dafb;
+        }
+
+    header .fab {
+        font-size: 24px;
+    }
+
+        header .fab.js-logo {
+            color: #61dafb;
+        }
+
+    header .buttons i.fab {
+        color: #fff;
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+        header .buttons i.fab:hover {
+            color: #61dafb;
+        }
+
+.edit-detail .input[readonly] {
+    background-color: #fafafa;
+}
+
+.edit-detail .input::-webkit-input-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+.edit-detail .input::-ms-input-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+.edit-detail .input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+.content-title-group {
+    margin-bottom: 16px;
+}
+
+    .content-title-group h2 {
+        border-left: 16px solid #00b3e6;
+        border-bottom: 2px solid #00b3e6;
+        padding-left: 8px;
+        padding-right: 16px;
+        display: inline-block;
+        text-transform: uppercase;
+        color: #555;
+        letter-spacing: 0;
+    }
+
+        .content-title-group h2:hover {
+            color: #00b3e6;
+        }
+
+    .content-title-group button.button {
+        border: 0;
+        color: #999;
+    }
+
+        .content-title-group button.button:hover {
+            color: #00b3e6;
+        }
+
+ul.list {
+    box-shadow: none;
+}
+
+div.card-content {
+    background-color: #fafafa;
+}
+
+    div.card-content .name {
+        font-size: 28px;
+        color: #000;
+    }
+
+    div.card-content .description {
+        font-size: 20px;
+        color: #999;
+    }
+
+.card {
+    margin-bottom: 2em;
+}
+
+label.label {
+    font-weight: 400;
+}
+
+p.card-header-title {
+    background-color: #00b3e6;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    display: block;
+    padding-left: 24px;
+}
+
+.card-footer button {
+    font-size: 16px;
+    color: #888;
+}
+
+    .card-footer button i {
+        margin-right: 10px;
+    }
+
+    .card-footer button:hover {
+        color: #00b3e6;
+    }
+
+.modal-card-foot button {
+    display: inline-block;
+    width: 80px;
+}
+
+.modal-card-body,
+.modal-card-head {
+    text-align: center;
+}
+
+.field {
+    margin-bottom: 0.75rem;
+}
+
+.navbar-burger {
+    margin-left: auto;
+}
+
+button.link {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
