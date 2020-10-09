@@ -83,7 +83,14 @@ else
 
     private async Task Save()
     {
-        await http.PostAsJsonAsync("api/products", product);
+        if (product.Id == 0)
+        {
+            await http.PostAsJsonAsync("api/products", product);
+        }
+        else
+        {
+            await http.PutAsJsonAsync("api/products", product);
+        }
         navigation.NavigateTo("/");
     }
 }
