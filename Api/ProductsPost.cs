@@ -27,7 +27,7 @@ namespace Api
             var body = await new StreamReader(req.Body).ReadToEndAsync();
             var product = JsonSerializer.Deserialize<Product>(body, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
-            var newProduct = await productData.UpdateProduct(product);
+            var newProduct = await productData.AddProduct(product);
             return new OkObjectResult(newProduct);
         }
     }
