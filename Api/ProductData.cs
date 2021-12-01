@@ -29,7 +29,7 @@ namespace Api
             {
                 Id = 20,
                 Name = "Sliced bread",
-                Description = "Load of fresh sliced wheat bread",
+                Description = "Loaf of fresh sliced wheat bread",
                 Quantity = 1
             },
             new Product
