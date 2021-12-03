@@ -1,37 +1,36 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
-namespace Api
+namespace Api;
+
+public class ProductsDelete
 {
-    public class ProductsDelete
+    private readonly IProductData productData;
+
+    public ProductsDelete(IProductData productData)
     {
-        private readonly IProductData productData;
+        this.productData = productData;
+    }
 
-        public ProductsDelete(IProductData productData)
+    [FunctionName("ProductsDelete")]
+    public async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "products/{productId:int}")] HttpRequest req,
+        int productId,
+        ILogger log)
+    {
+        var result = await productData.DeleteProduct(productId);
+
+        if (result)
         {
-            this.productData = productData;
+            return new OkResult();
         }
-
-        [FunctionName("ProductsDelete")]
-        public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "products/{productId:int}")] HttpRequest req,
-            int productId,
-            ILogger log)
+        else
         {
-            var result = await productData.DeleteProduct(productId);
-
-            if (result)
-            {
-                return new OkResult();
-            }
-            else
-            {
-                return new BadRequestResult();
-            }
+            return new BadRequestResult();
         }
     }
 }
